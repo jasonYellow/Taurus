@@ -1,2 +1,2 @@
-# Taurus
-rfx codec library
+# Aries
+freerdp remoterfx codec & decodec demo
