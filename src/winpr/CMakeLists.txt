@@ -26,11 +26,11 @@ set(WINPR_DEFINITIONS "")
 
 ADD_DEFINITIONS("-DWITH_OPENSSL")
 
-SET(ENV{PKG_CONFIG_PATH} /usr/local/ssl/lib/pkgconfig)
+SET(ENV{PKG_CONFIG_PATH} /home/vdi/hc/openssl/lib/pkgconfig)
 find_package(PkgConfig)
 pkg_search_module(OPENSSL openssl)
 
-SET (OPENSSL_LIB /usr/local/ssl/lib)
+SET (OPENSSL_LIB /home/vdi/hc/openssl/lib)
 
 SET (PROJECT_INC ${CMAKE_SOURCE_DIR}/inc)
 INCLUDE_DIRECTORIES (${PROJECT_INC}  ${OPENSSL_INCLUDE_DIRS})
@@ -145,6 +145,9 @@ if (WIN32)
 endif()
 
 LINK_DIRECTORIES (${OPENSSL_LIB})
+
+SET (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fPIC")
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 add_library(${MODULE_NAME} SHARED ${WINPR_SRCS})
 set_target_properties(${MODULE_NAME} PROPERTIES LINKER_LANGUAGE C)
